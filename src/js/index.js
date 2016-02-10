@@ -1,1 +1,1 @@
-export default foo = "Dette er en streng";
+export const foo = "Dette er en streng";

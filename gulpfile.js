@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var eslint = require('gulp-eslint');
 var browserify = require('browserify');
 var babel = require('babelify');
 var source = require('vinyl-source-stream');
@@ -19,4 +20,11 @@ gulp.task('browserify', function(){
         .pipe(gulp.dest('./build/js'))
 });
 
-gulp.task('default', ['browserify']);
+gulp.task('lint', function(){
+    return gulp.src('./src/js/**/*')
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
+
+gulp.task('default', ['lint', 'browserify']);
