@@ -1,1 +1,3 @@
-export const foo = "Dette er en streng";
+import React from 'react';
+
+export const foo = <div>Hello</div>;
