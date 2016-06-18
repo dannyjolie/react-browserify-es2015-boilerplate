@@ -46,9 +46,11 @@
     "react/sort-comp": 1,
     "react/wrap-multilines": 1
   },
-  "ecmaFeatures": {
-    "modules" : true,
-    "jsx"     : true
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "env": {
     "browser" : true,
