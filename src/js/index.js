@@ -1,3 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import HelloWorld from './components/HelloWorld';
 
-export const foo = <div>Hello</div>;
+const helloProps = {
+    foo: 'Foo!',
+    bar: 'Bar!'
+};
+
+ReactDOM.render(<HelloWorld {...helloProps} />, document.querySelector('#app'));

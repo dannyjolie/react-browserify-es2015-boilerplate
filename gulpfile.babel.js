@@ -8,7 +8,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
 import gutil from'gulp-util';
 
-gulp.task('browserify', () => {
+gulp.task('browserify', ['lint', 'env:production'], () => {
     let b = browserify('./src/js/index.js').transform(babel);
     return b.bundle()
         .pipe(source('index.js'))
@@ -20,6 +20,16 @@ gulp.task('browserify', () => {
         .pipe(gulp.dest('./build/js'));
 });
 
+gulp.task('copy', () => {
+    return gulp.src('src/index.html')
+        .pipe(gulp.dest('build/'));
+});
+
+/* Set node env */
+gulp.task('env:production', () => {
+    return process.env.NODE_ENV = 'production';
+});
+
 gulp.task('lint', () => {
     return gulp.src(['./gulpfile.babel.js', './src/js/**/*'])
         .pipe(eslint())
@@ -27,4 +37,4 @@ gulp.task('lint', () => {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('default', ['lint', 'browserify']);
+gulp.task('default', ['browserify', 'copy']);
